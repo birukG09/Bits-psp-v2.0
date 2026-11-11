@@ -1,0 +1,17 @@
+{
+  "name": "bits-connect",
+  "version": "2.0.0",
+  "private": true,
+  "author": "Biruk Gebre (Ugr/0113/24)",
+  "description": "BiTS Connect - student developer (Software Engineering) portal: PSP tracker (Job Number Log + Daily Time Logs), GPA tracker, habit tracker and analytics",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed": "node server/seed.js"
+  },
+  "engines": { "node": ">=22.13" },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
