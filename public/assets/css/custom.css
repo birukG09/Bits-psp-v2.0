@@ -1,0 +1,190 @@
+/* ==========================================================================
+   BiTS Connect - Green & White theme
+   Bootstrap 5.3 variable overrides so existing markup (bg-primary, btn-primary,
+   text-info ...) turns green without editing every page.
+   ========================================================================== */
+
+:root,
+[data-bs-theme="light"] {
+  --bits-green-900: #0b3d24;
+  --bits-green-800: #0f5132;
+  --bits-green-700: #146c43;
+  --bits-green-600: #198754;
+  --bits-green-500: #2ea36a;
+  --bits-green-400: #5cc48f;
+  --bits-green-200: #c9ecd9;
+  --bits-green-100: #e8f6ee;
+  --bits-green-50:  #f4fbf7;
+
+  --bs-primary: #198754;
+  --bs-primary-rgb: 25, 135, 84;
+  --bs-success: #2ea36a;
+  --bs-success-rgb: 46, 163, 106;
+  --bs-info: #0f766e;
+  --bs-info-rgb: 15, 118, 110;
+  --bs-link-color: #146c43;
+  --bs-link-color-rgb: 20, 108, 67;
+  --bs-link-hover-color: #0f5132;
+  --bs-link-hover-color-rgb: 15, 81, 50;
+  --bs-body-bg: #f4fbf7;
+  --bs-body-color: #1d2b24;
+  --bs-border-color: #d6e8dd;
+  --bs-primary-bg-subtle: #e8f6ee;
+  --bs-primary-border-subtle: #c9ecd9;
+  --bs-primary-text-emphasis: #0f5132;
+  --bs-focus-ring-color: rgba(25, 135, 84, 0.25);
+}
+
+body { background-color: var(--bits-green-50); }
+.bg-light { background-color: var(--bits-green-50) !important; }
+
+/* Buttons ---------------------------------------------------------------- */
+.btn-primary {
+  --bs-btn-bg: #198754; --bs-btn-border-color: #198754;
+  --bs-btn-hover-bg: #146c43; --bs-btn-hover-border-color: #13653f;
+  --bs-btn-active-bg: #13653f; --bs-btn-active-border-color: #11603b;
+  --bs-btn-disabled-bg: #198754; --bs-btn-disabled-border-color: #198754;
+}
+.btn-outline-primary {
+  --bs-btn-color: #198754; --bs-btn-border-color: #198754;
+  --bs-btn-hover-bg: #198754; --bs-btn-hover-border-color: #198754;
+  --bs-btn-active-bg: #198754; --bs-btn-active-border-color: #198754;
+}
+.btn-outline-secondary {
+  --bs-btn-color: #4b5f55; --bs-btn-border-color: #b8cfc1;
+  --bs-btn-hover-bg: #e8f6ee; --bs-btn-hover-color: #0f5132; --bs-btn-hover-border-color: #198754;
+}
+
+/* Navbar ----------------------------------------------------------------- */
+#mainNav { border-bottom: 2px solid var(--bits-green-200) !important; }
+#mainNav .nav-link { color: #3c5a4a; font-weight: 500; border-radius: .5rem; padding: .5rem .6rem; white-space: nowrap; }
+#mainNav .btn, #mainNav .navbar-brand { white-space: nowrap; }
+#mainNav .nav-link:hover { background: var(--bits-green-100); color: var(--bits-green-800); }
+#mainNav .nav-link.active { background: var(--bits-green-100); color: var(--bits-green-700); }
+.navbar-brand .bg-primary { background: linear-gradient(135deg, #198754, #0f5132) !important; }
+
+/* Cards & tables ---------------------------------------------------------- */
+.card { border-radius: .85rem; }
+.card.shadow-sm { box-shadow: 0 2px 10px rgba(15, 81, 50, .07) !important; }
+.table-light { --bs-table-bg: #eaf6ef; --bs-table-color: #0f5132; }
+.table-hover > tbody > tr:hover > * { --bs-table-hover-bg: #f1faf5; }
+.progress { background-color: #e0efe6; }
+.progress-bar.bg-gradient { background: linear-gradient(90deg, #5cc48f, #198754) !important; }
+.form-control:focus, .form-select:focus {
+  border-color: #5cc48f; box-shadow: 0 0 0 .2rem rgba(25, 135, 84, .2);
+}
+.form-check-input:checked { background-color: #198754; border-color: #198754; }
+.modal-header { background: var(--bits-green-50); border-bottom-color: var(--bits-green-200); }
+
+/* Stat tiles ------------------------------------------------------------- */
+.stat-tile .value { font-size: 1.75rem; font-weight: 700; color: var(--bits-green-700); line-height: 1.1; }
+.stat-tile .label { color: #5b7266; font-size: .8rem; }
+
+/* ==========================================================================
+   Landing page (campus photo background)
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background:
+    linear-gradient(105deg, rgba(8, 48, 29, .90) 0%, rgba(11, 61, 36, .72) 45%, rgba(11, 61, 36, .25) 100%),
+    url("../img/campus.jpg") center / cover no-repeat fixed;
+}
+.hero .navbar { position: absolute; top: 0; left: 0; right: 0; background: transparent; }
+.hero .navbar-brand, .hero .nav-link { color: #fff !important; }
+.hero h1 { font-weight: 800; letter-spacing: -.02em; text-shadow: 0 2px 18px rgba(0, 0, 0, .35); }
+.hero .lead { color: #e3f5ea; max-width: 34rem; }
+.hero .btn-light { color: var(--bits-green-800); font-weight: 600; }
+.hero .btn-outline-light:hover { color: var(--bits-green-800); }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .35);
+  backdrop-filter: blur(6px); border-radius: 999px; padding: .3rem .85rem; font-size: .85rem;
+}
+.feature-card {
+  background: #fff; border: 1px solid var(--bits-green-200); border-radius: 1rem;
+  padding: 1.5rem; height: 100%; transition: transform .15s ease, box-shadow .15s ease;
+}
+.feature-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15, 81, 50, .12); }
+.feature-icon {
+  width: 3rem; height: 3rem; border-radius: .8rem; display: grid; place-items: center;
+  background: var(--bits-green-100); color: var(--bits-green-700); font-size: 1.4rem; margin-bottom: .9rem;
+}
+
+/* Login page uses the same photo, softer ---------------------------------- */
+.auth-bg {
+  min-height: 100vh; display: grid; place-items: center; padding: 1.5rem;
+  background:
+    linear-gradient(rgba(8, 48, 29, .78), rgba(8, 48, 29, .78)),
+    url("../img/campus.jpg") center / cover no-repeat fixed;
+}
+.auth-card { width: 100%; max-width: 26rem; border: 0; border-radius: 1.1rem; box-shadow: 0 20px 50px rgba(0, 0, 0, .35); }
+
+/* ==========================================================================
+   Circular habit tracker
+   ========================================================================== */
+.habit-ring-wrap { position: relative; width: 100%; max-width: 760px; margin: 0 auto; }
+.habit-ring-wrap svg { width: 100%; height: auto; display: block; }
+.ring-seg { cursor: pointer; transition: filter .12s; }
+.ring-seg:hover { filter: brightness(1.12); }
+.ring-seg.empty { fill: #dcebe2; }
+.ring-seg.empty:hover { fill: #c4dfcf; }
+.ring-seg.missed { fill: #f4c7c3; }
+.ring-seg.missed:hover { fill: #ecaaa4; }
+.ring-tooltip {
+  position: absolute; pointer-events: none; z-index: 5; background: #fff; border: 1px solid var(--bits-green-200);
+  border-radius: .6rem; padding: .35rem .6rem; font-size: .78rem; box-shadow: 0 6px 18px rgba(15, 81, 50, .18);
+  transform: translate(-50%, -115%); white-space: nowrap;
+}
+.habit-chip { display: inline-block; width: .8rem; height: .8rem; border-radius: 50%; margin-right: .45rem; }
+.streak-flame { color: #e8590c; }
+
+/* PSP / analytics helpers ---------------------------------------------------- */
+.table-sm td, .table-sm th { vertical-align: middle; }
+.chart-box { position: relative; height: 280px; }
+.empty-hint { color: #7d9487; font-style: italic; }
+@media (max-width: 575.98px) {
+  .hero { background-attachment: scroll; }
+}
+
+/* Logo ------------------------------------------------------------------- */
+.brand-logo { height: 42px; width: auto; display: block; }
+.hero .brand-logo { height: 46px; background: #fff; border-radius: .7rem; padding: .3rem .7rem; box-shadow: 0 4px 16px rgba(0, 0, 0, .25); }
+.auth-card .brand-logo { height: 48px; }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link { background-color: #198754; color: #fff; }
+.nav-pills .nav-link { color: #146c43; }
+.hero .brand-logo { height: 56px; padding: .35rem .8rem; }
+
+/* Keep the signed-in name on one line now that the student nav has six links */
+#mainNav #userName { display: inline-block; max-width: 9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+#mainNav .navbar-collapse .d-flex > span { white-space: nowrap; }
+
+/* Sticky notes (PSP) ----------------------------------------------------------- */
+.sticky-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; align-items: start; }
+.sticky { --note: #fff3a3; --note-edge: #e6d56a; background: var(--note); border: 1px solid var(--note-edge); border-radius: .35rem .35rem .35rem 1.2rem;
+  box-shadow: 0 3px 10px rgba(15, 81, 50, .15); display: flex; flex-direction: column; min-height: 13rem; transition: box-shadow .15s ease, transform .15s ease; }
+.sticky:hover, .sticky:focus-within { box-shadow: 0 8px 20px rgba(15, 81, 50, .22); transform: translateY(-2px); }
+.sticky.c-yellow { --note: #fff3a3; --note-edge: #e6d56a; }
+.sticky.c-green  { --note: #c9ecd9; --note-edge: #8fcaa9; }
+.sticky.c-blue   { --note: #cfe6fb; --note-edge: #95c2ea; }
+.sticky.c-pink   { --note: #fbd3e3; --note-edge: #eea1c0; }
+.sticky.c-purple { --note: #e1d6f7; --note-edge: #b9a4e6; }
+.sticky.c-white  { --note: #ffffff; --note-edge: #cfdad3; }
+.sticky-bar { display: flex; align-items: center; gap: .15rem; padding: .35rem .4rem .1rem; background: rgba(0, 0, 0, .05); border-radius: .3rem .3rem 0 0; }
+.sticky-bar .btn { --bs-btn-padding-y: .1rem; --bs-btn-padding-x: .4rem; color: #3c3c3c; border: 0; background: transparent; }
+.sticky-bar .btn:hover { background: rgba(0, 0, 0, .1); }
+.sticky-bar .pin-on { color: #0f5132; }
+.sticky textarea { flex: 1; border: 0; background: transparent; resize: none; padding: .6rem .75rem; min-height: 8rem; color: #2b2b2b; font-size: .95rem; line-height: 1.45; font-family: "Segoe Print", "Segoe UI", system-ui, sans-serif; }
+.sticky textarea:focus { outline: none; box-shadow: none; }
+.sticky-foot { display: flex; align-items: center; gap: .4rem; padding: .25rem .6rem .5rem; font-size: .72rem; color: #5b5b5b; }
+.sticky-foot select { max-width: 60%; font-size: .72rem; padding: .05rem .3rem; background-color: rgba(255, 255, 255, .55); border: 1px solid rgba(0, 0, 0, .12); border-radius: .3rem; }
+.swatch { width: 1rem; height: 1rem; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .25); padding: 0; display: inline-block; }
+.swatch.c-yellow { background: #fff3a3; } .swatch.c-green { background: #c9ecd9; } .swatch.c-blue { background: #cfe6fb; }
+.swatch.c-pink { background: #fbd3e3; } .swatch.c-purple { background: #e1d6f7; } .swatch.c-white { background: #fff; }
+.sticky .saved { margin-left: auto; opacity: 0; transition: opacity .3s; } .sticky .saved.show { opacity: 1; }
+
+.sticky .stamp { white-space: nowrap; }
+.sticky-foot select { max-width: 52%; }
