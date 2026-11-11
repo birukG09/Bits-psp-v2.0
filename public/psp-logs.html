@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Biruk Gebre" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PSP Tracker - BiTS Connect</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/custom.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom shadow-sm" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="assets/img/bits-logo.png" alt="BiTS Connect" class="brand-logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link active" href="psp-logs.html"><i class="bi bi-stopwatch me-1"></i>PSP Logs</a></li>
+            <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="gpa-tracker.html"><i class="bi bi-bar-chart me-1"></i>GPA Tracker</a></li>
+            <li class="nav-item"><a class="nav-link" href="habit-tracker.html"><i class="bi bi-bullseye me-1"></i>Habit Tracker</a></li>
+            <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="bi bi-graph-up-arrow me-1"></i>Analytics</a></li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <span class="me-3"><i class="bi bi-person me-1"></i><span id="userName"></span> <small class="text-muted">(Student)</small></span>
+            <button class="btn btn-outline-secondary" onclick="logout()"><i class="bi bi-box-arrow-right me-1"></i>Sign Out</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-xl py-4">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <div>
+          <h1 class="h3 mb-1"><i class="bi bi-stopwatch text-primary me-2"></i>PSP Tracker</h1>
+          <p class="text-muted mb-1">Personal Software Process recording and tracking, containing:</p>
+          <ul class="mb-0 text-muted small ps-3">
+            <li><strong>Job Number Log</strong></li>
+            <li><strong>Daily Time Logs</strong></li>
+          </ul>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-outline-primary" id="templateBtn"><i class="bi bi-list-check me-2"></i>Add standard jobs</button>
+          <button class="btn btn-outline-primary" id="addJobBtn"><i class="bi bi-plus-lg me-2"></i>Add job</button>
+          <button class="btn btn-primary" id="addEntryBtn"><i class="bi bi-clock-history me-2"></i>Log time</button>
+        </div>
+      </div>
+
+      <div class="alert alert-light border small" id="pspGuide">
+        <div class="fw-semibold mb-1">How to use it</div>
+        <div><strong>Previous work:</strong> add your major programming tasks and assignments as <em>Previous work</em> jobs, log the actual time in the Daily Time Logs, and enter any estimates you still have (leave the rest blank).</div>
+        <div><strong>New project (Student Grade Management System):</strong> add the standard jobs, estimate time and expected units before you start each job, log time as you work, then record actual units when the job is done. The To Date totals update by themselves.</div>
+      </div>
+
+      <!-- Running timer -->
+      <div class="alert alert-success d-none align-items-center justify-content-between" id="timerBanner" role="status">
+        <div><i class="bi bi-record-circle me-2"></i>Timing <strong id="timerJob"></strong> since <span id="timerSince"></span> (<span id="timerElapsed"></span>)</div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-success" id="timerStop"><i class="bi bi-stop-circle me-1"></i>Stop and log</button>
+          <button class="btn btn-sm btn-outline-secondary" id="timerCancel">Discard</button>
+        </div>
+      </div>
+
+      <ul class="nav nav-tabs mb-3" id="pspTabs" role="tablist">
+        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#paneJobs" type="button">Job Number Log</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#paneTime" type="button">Daily Time Logs</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#paneSummary" type="button">Summary</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#paneNotes" type="button"><i class="bi bi-sticky me-1"></i>Notes</button></li>
+      </ul>
+
+      <div class="tab-content">
+        <!-- Job Number Log -->
+        <div class="tab-pane fade show active" id="paneJobs">
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0 d-flex flex-wrap gap-2 justify-content-between align-items-center">
+              <div class="d-flex flex-wrap gap-2">
+                <select class="form-select form-select-sm w-auto" id="projectFilter" aria-label="Project"><option value="">All projects</option></select>
+                <select class="form-select form-select-sm w-auto" id="kindFilter" aria-label="Kind">
+                  <option value="">Previous work and projects</option>
+                  <option value="previous">Previous work</option>
+                  <option value="project">New projects</option>
+                </select>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary" id="exportJobs"><i class="bi bi-download me-1"></i>Export CSV</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-sm mb-0 align-middle" id="jobsTable">
+                <thead class="table-light">
+                  <tr>
+                    <th rowspan="2">Job #</th><th rowspan="2">Job</th><th rowspan="2">Status</th>
+                    <th colspan="2" class="text-center border-start">Time (h:mm)</th>
+                    <th colspan="2" class="text-center border-start">Units</th>
+                    <th colspan="3" class="text-center border-start">To Date</th>
+                    <th rowspan="2"></th>
+                  </tr>
+                  <tr>
+                    <th class="border-start">Est.</th><th>Actual</th>
+                    <th class="border-start">Est.</th><th>Actual</th>
+                    <th class="border-start">Est. time</th><th>Actual time</th><th>Units</th>
+                  </tr>
+                </thead>
+                <tbody id="jobsBody"></tbody>
+              </table>
+            </div>
+            <div class="card-footer bg-white small text-muted">
+              Estimates can be left blank when you no longer have the data. "To Date" adds up the jobs shown, in job number order.
+            </div>
+          </div>
+        </div>
+
+        <!-- Daily Time Log -->
+        <div class="tab-pane fade" id="paneTime">
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0 d-flex flex-wrap gap-2 justify-content-between align-items-center">
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <input type="date" class="form-control form-control-sm w-auto" id="dateFilter" aria-label="Filter by date" />
+                <button class="btn btn-sm btn-outline-secondary" id="clearDate">All dates</button>
+                <span class="small text-muted" id="entryTotal"></span>
+              </div>
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <select class="form-select form-select-sm w-auto" id="timerJobSelect" aria-label="Job to time"></select>
+                <button class="btn btn-sm btn-success" id="timerStart"><i class="bi bi-play-circle me-1"></i>Start timer</button>
+                <button class="btn btn-sm btn-outline-secondary" id="exportEntries"><i class="bi bi-download me-1"></i>Export CSV</button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-sm mb-0 align-middle">
+                <thead class="table-light">
+                  <tr><th>Date</th><th>Start</th><th>Stop</th><th>Interruption</th><th>Delta (h:mm)</th><th>Job</th><th>Comments</th><th></th></tr>
+                </thead>
+                <tbody id="entriesBody"></tbody>
+              </table>
+            </div>
+            <div class="card-footer bg-white small text-muted">
+              Delta time = stop minus start minus interruption. Entries on the same day cannot overlap.
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="tab-pane fade" id="paneSummary">
+          <div class="row g-3 mb-3" id="kpis"></div>
+          <div class="row g-4">
+            <div class="col-lg-7"><div class="card border-0 shadow-sm"><div class="card-header bg-white border-bottom-0"><h6 class="mb-0">Estimated vs actual time per job (minutes)</h6></div>
+              <div class="card-body"><div class="chart-box"><canvas id="estChart"></canvas></div><div class="empty-hint d-none" id="estEmpty">Add jobs with estimates and log time to compare.</div></div></div></div>
+            <div class="col-lg-5"><div class="card border-0 shadow-sm"><div class="card-header bg-white border-bottom-0"><h6 class="mb-0">Time per day, last 14 days (minutes)</h6></div>
+              <div class="card-body"><div class="chart-box"><canvas id="dayChart"></canvas></div><div class="empty-hint d-none" id="dayEmpty">No time logged in the last 14 days.</div></div></div></div>
+            <div class="col-lg-6"><div class="card border-0 shadow-sm"><div class="card-header bg-white border-bottom-0"><h6 class="mb-0">Time by phase</h6></div>
+              <div class="table-responsive"><table class="table table-sm mb-0"><thead class="table-light"><tr><th>Phase</th><th>Jobs</th><th>Est.</th><th>Actual</th></tr></thead><tbody id="phaseBody"></tbody></table></div></div></div>
+            <div class="col-lg-6"><div class="card border-0 shadow-sm"><div class="card-header bg-white border-bottom-0"><h6 class="mb-0">Estimate accuracy (completed jobs)</h6></div>
+              <div class="table-responsive"><table class="table table-sm mb-0"><thead class="table-light"><tr><th>Job</th><th>Est.</th><th>Actual</th><th>Error</th></tr></thead><tbody id="accBody"></tbody></table></div></div></div>
+          </div>
+        </div>
+
+        <!-- Sticky notes -->
+        <div class="tab-pane fade" id="paneNotes">
+          <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+            <button class="btn btn-primary" id="newNoteBtn"><i class="bi bi-plus-lg me-1"></i>New note</button>
+            <input class="form-control" id="noteSearch" type="search" placeholder="Search notes" style="max-width: 16rem" />
+            <select class="form-select" id="noteJobFilter" style="max-width: 16rem"><option value="">All notes</option></select>
+            <small class="text-muted ms-auto" id="noteCount"></small>
+          </div>
+          <div class="sticky-board" id="noteBoard"></div>
+          <div class="empty-hint d-none" id="noteEmpty">No notes yet. Press New note for a sticky note you can type straight into. Link it to a job to find it again from that job.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job modal -->
+    <div class="modal fade" id="jobModal" tabindex="-1">
+      <div class="modal-dialog modal-lg"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="jobModalTitle">Add job</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+          <form id="jobForm">
+            <input type="hidden" id="jobId" />
+            <div class="row g-3">
+              <div class="col-md-5"><label class="form-label" for="jobProject">Project</label>
+                <input class="form-control" id="jobProject" list="projectList" maxlength="60" placeholder="e.g. Student Grade Management System" />
+                <datalist id="projectList"></datalist></div>
+              <div class="col-md-3"><label class="form-label" for="jobKind">This is</label>
+                <select class="form-select" id="jobKind"><option value="project">New project</option><option value="previous">Previous work</option></select></div>
+              <div class="col-md-4"><label class="form-label" for="jobPhase">Phase</label>
+                <select class="form-select" id="jobPhase">
+                  <option value="requirements">Requirements analysis</option><option value="design">Design</option>
+                  <option value="implementation">Implementation</option><option value="testing">Testing</option>
+                  <option value="documentation">Documentation</option><option value="other" selected>Other</option>
+                </select></div>
+              <div class="col-12"><label class="form-label" for="jobName">Job name</label>
+                <input class="form-control" id="jobName" maxlength="80" required placeholder="e.g. Input validation module" /></div>
+              <div class="col-md-4"><label class="form-label" for="jobEstMin">Estimated time (minutes)</label>
+                <input type="number" class="form-control" id="jobEstMin" min="0" step="1" placeholder="blank if unknown" /></div>
+              <div class="col-md-4"><label class="form-label" for="jobEstUnits">Expected work-product units</label>
+                <input type="number" class="form-control" id="jobEstUnits" min="0" step="any" placeholder="blank if unknown" /></div>
+              <div class="col-md-4"><label class="form-label" for="jobUnitLabel">Unit</label>
+                <input class="form-control" id="jobUnitLabel" list="unitList" maxlength="20" value="LOC" />
+                <datalist id="unitList"><option>LOC</option><option>pages</option><option>test cases</option><option>diagrams</option><option>requirements</option></datalist></div>
+              <div class="col-md-4"><label class="form-label" for="jobStatus">Status</label>
+                <select class="form-select" id="jobStatus"><option value="planned">Planned</option><option value="in_progress">In progress</option><option value="done">Done</option></select></div>
+              <div class="col-md-4"><label class="form-label" for="jobActualUnits">Actual units</label>
+                <input type="number" class="form-control" id="jobActualUnits" min="0" step="any" placeholder="after completing" /></div>
+              <div class="col-md-4"><label class="form-label" for="jobCompleted">Completed on</label>
+                <input type="date" class="form-control" id="jobCompleted" /></div>
+              <div class="col-12"><label class="form-label" for="jobNotes">Notes</label>
+                <textarea class="form-control" id="jobNotes" rows="2" maxlength="500"></textarea></div>
+            </div>
+            <div class="d-grid mt-4"><button class="btn btn-primary" type="submit" id="jobSave">Save job</button></div>
+          </form>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- Time entry modal -->
+    <div class="modal fade" id="entryModal" tabindex="-1">
+      <div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="entryModalTitle">Log time</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+          <form id="entryForm">
+            <input type="hidden" id="entryId" />
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label" for="entryDate">Date</label><input type="date" class="form-control" id="entryDate" required /></div>
+              <div class="col-md-6"><label class="form-label" for="entryJob">Job</label><select class="form-select" id="entryJob" required></select></div>
+              <div class="col-md-4"><label class="form-label" for="entryStart">Start</label><input type="time" class="form-control" id="entryStart" required /></div>
+              <div class="col-md-4"><label class="form-label" for="entryStop">Stop</label><input type="time" class="form-control" id="entryStop" required /></div>
+              <div class="col-md-4"><label class="form-label" for="entryInt">Interruption (min)</label><input type="number" class="form-control" id="entryInt" min="0" step="1" value="0" /></div>
+              <div class="col-12"><label class="form-label" for="entryIntNote">Interruption reason</label><input class="form-control" id="entryIntNote" maxlength="200" /></div>
+              <div class="col-12"><label class="form-label" for="entryComments">Comments</label><textarea class="form-control" id="entryComments" rows="2" maxlength="500"></textarea></div>
+              <div class="col-12"><div class="small text-muted" id="deltaPreview">Delta time: --</div></div>
+            </div>
+            <div class="d-grid mt-3"><button class="btn btn-primary" type="submit">Save entry</button></div>
+          </form>
+        </div>
+      </div></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/psp-logs.js"></script>
+    <script src="assets/js/psp-notes.js"></script>
+  </body>
+</html>
