@@ -1,5 +1,10 @@
 # BiTS Connect
  Biruk_Gebre_UGR-SWE-0113-24
+ Demo Account
+A demo student account 
+
+Email: biruk.gebre@bits.edu
+Password: demo12345
 
 
 <p align="center">
