@@ -1,45 +1,189 @@
 # BiTS Connect
 
-A student developer portal for BiTS College Software Engineering students. Its main feature is a **PSP Tracker**: a Job Number Log and Daily Time Logs for recording and tracking programming work. It also has a GPA tracker, a 90-day habit tracker and analytics.
+<p align="center">
+  <img src="https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20058%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true" width="100%" alt="BiTS Connect Homepage">
+</p>
 
-**Author:** Biruk Gebre (Ugr/0113/24), Software Engineering, BiTS College, Addis Ababa.
+<p align="center">
+  <strong>A Student Developer Portal for BiTS College</strong>
+</p>
+
+<p align="center">
+  A platform featuring Personal Software Process (PSP) tracking, GPA management, habit tracking, and academic analytics.
+</p>
+
+---
+
+**Author:** Biruk Gebre | Software Engineering | BiTS College, Addis Ababa
+
+## Screenshots
+
+### 1. Home Page
+
+![BiTS Connect Homepage](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20058%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+### 2. Student Dashboard
+
+![Student Dashboard](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20054%20-%20Student%20Dashboard%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+### 3. GPA Tracker
+
+![GPA Tracker](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20049%20-%20GPA%20Tracker%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+![GPA Tracker Details](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20055%20-%20GPA%20Tracker%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+### 4. Personal Software Process (PSP) Tracker
+
+![PSP Tracker](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20050%20-%20PSP%20Tracker%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+![PSP Tracker Details](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20051%20-%20PSP%20Tracker%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+![PSP Tracker Logs](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20052%20-%20PSP%20Tracker%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+![PSP Tracker Notes](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20053%20-%20PSP%20Tracker%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+![PSP Tracker Additional View](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20060%20-%20PSP%20Tracker%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+### 5. Habit Tracker
+
+![Habit Tracker](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20061%20-%20Habit%20Tracker%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+### 6. Analytics Dashboard
+
+![Analytics Dashboard](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20057%20-%20Analytics%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
+
+---
 
 ## Features
 
-- **PSP Tracker** (home page after sign-in), containing:
-  - **Job Number Log**: job number, estimated and actual time and units, and running "To Date" totals. Jobs can be previous work or part of a new project. Estimates are optional. "Add standard jobs" creates requirements analysis, design, implementation, testing and documentation for a project.
-  - **Daily Time Logs**: date, start, stop, interruption time, delta time and comments. Entries on the same day cannot overlap, and a start/stop timer fills in an entry for you. Actual job time is always the sum of its Daily Time Log entries.
-  - A summary (time per day, estimated vs actual, estimate accuracy, productivity per unit), CSV export, and sticky notes that can be linked to a job.
-- **GPA Tracker:** courses with credits and BiTS letter grades. GPA per semester, per year and cumulative is calculated on the server. Includes the Software Engineering curriculum from the BiTS College Undergraduate Student Handbook (`server/curriculum.json`), a what-if GPA calculator and a target-GPA planner.
-- **Habit Tracker:** a circular 90-day ring with one ring per habit, streaks and JSON export (up to 10 habits).
-- **Dashboard and Analytics:** GPA trend, grade distribution, habit completion and PSP time logged.
+- **PSP Tracker**
+  - Job Number Log.
+  - Daily Time Logs.
+  - Estimated vs. actual time tracking.
+  - Productivity metrics.
+  - CSV export.
+  - Sticky notes linked to jobs.
 
-## Demo data
+- **GPA Tracker**
+  - Course and credit management.
+  - Semester, yearly, and cumulative GPA calculations.
+  - BiTS Software Engineering curriculum.
+  - What-if GPA calculator.
+  - Target-GPA planner.
 
-On the first start with an empty database, a demo student is created: **Biruk Gebre, Ugr/0113/24**.
+- **Habit Tracker**
+  - 90-day habit tracking.
+  - Streak tracking.
+  - JSON export.
+  - Support for up to 10 habits.
 
-- Sign in with `biruk.gebre@bits.edu` / `demo12345`.
-- PSP: 5 previous-work jobs and a Student Grade Management System sprint from the last 7 days (requirements, design, implementation and testing done, documentation in progress), 21 Daily Time Log entries and 5 notes.
-- GPA: 20 completed courses over 5 semesters, 4 in progress and 2 planned.
-- Habits: 5 habits that started 7 days ago.
+- **Dashboard and Analytics**
+  - GPA trends.
+  - Grade distribution.
+  - Habit completion.
+  - PSP time analytics.
 
-Dates are relative to today. Set `NO_DEMO=1` to start with an empty database, or run `npm run seed -- --reset` to rebuild the demo account. You can also register your own account.
+## Demo Account
 
-## Run it
+A demo student account is created automatically when the database is initialized.
 
-Needs Node 22.13 or newer (uses the built-in `node:sqlite`).
+- **Email:** `biruk.gebre@bits.edu`
+- **Password:** `demo12345`
+
+The demo account includes sample PSP records, GPA data, and habits.
+
+Set `NO_DEMO=1` to start with an empty database, or run:
+
+```bash
+npm run seed -- --reset
+```
+
+You can also register your own account.
+
+## Installation and Setup
+
+### Requirements
+
+- Node.js 22.13 or newer.
+- npm.
+
+### Clone the repository
+
+```bash
+git clone https://github.com/birukG09/Bits-psp-v2.0.git
+cd Bits-psp-v2.0
+```
+
+### Install dependencies
 
 ```bash
 npm install
-npm start          # http://localhost:3000   (PORT=4000 npm start to change)
 ```
 
-The pages load Bootstrap, Bootstrap Icons and Chart.js from the jsDelivr CDN, so the browser needs internet access.
+### Start the application
 
-## Layout
+```bash
+npm start
+```
 
+Open your browser:
+
+```text
+http://localhost:3000
 ```
-server/      Express API (auth, gpa, habits, psp, analytics), SQLite schema and demo seed
-public/      HTML pages, assets/css/custom.css, assets/js/*, assets/img/*
-data/        created on first run (database), git-ignored
+
+To change the port:
+
+```bash
+PORT=4000 npm start
 ```
+
+## Technology Stack
+
+- **Backend:** Node.js, Express.js
+- **Frontend:** HTML, CSS, JavaScript, Bootstrap
+- **Database:** SQLite
+- **Data Visualization:** Chart.js
+- **Icons:** Bootstrap Icons
+
+## Project Structure
+
+```text
+Bits-psp-v2.0/
+│
+├── public/
+│   ├── assets/
+│   │   ├── css/
+│   │   ├── img/
+│   │   └── js/
+│   ├── index.html
+│   ├── dashboard.html
+│   ├── login.html
+│   ├── analytics.html
+│   ├── gpa-tracker.html
+│   ├── habit-tracker.html
+│   └── psp-logs.html
+│
+├── server/
+│   ├── analytics.js
+│   ├── auth.js
+│   ├── curriculum.js
+│   ├── db.js
+│   ├── gpa.js
+│   ├── habits.js
+│   ├── psp.js
+│   ├── scale.js
+│   └── index.js
+│
+├── data/
+├── package.json
+└── README.md
+```
+
+## Author
+
+**Biruk Gebre**
+
+Software Engineering Student | BiTS College
+
+GitHub: https://github.com/birukG09
