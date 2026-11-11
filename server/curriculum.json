@@ -1,0 +1,561 @@
+{
+  "software_engineering": {
+    "name": "Software Engineering - B.Sc.",
+    "courses": [
+      {
+        "code": "SE101",
+        "title": "Introduction to Computer Systems",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 1,
+        "semester": 1
+      },
+      {
+        "code": "SE104",
+        "title": "Introduction to Software Engineering",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE101"
+        ],
+        "type": "compulsory",
+        "year": 1,
+        "semester": 2
+      },
+      {
+        "code": "SE131",
+        "title": "Fundamentals of Programming",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 1,
+        "semester": 1
+      },
+      {
+        "code": "SE132",
+        "title": "Object Oriented Programming",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE131"
+        ],
+        "type": "compulsory",
+        "year": 1,
+        "semester": 2
+      },
+      {
+        "code": "IT154",
+        "title": "Data Communication and Computer Networks I",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE101"
+        ],
+        "type": "compulsory",
+        "year": 1,
+        "semester": 2
+      },
+      {
+        "code": "SE221",
+        "title": "Information Assurance and Systems Security",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "IT154"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 1
+      },
+      {
+        "code": "SE241",
+        "title": "Fundamentals of Database Systems",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE101"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 1
+      },
+      {
+        "code": "SE223",
+        "title": "Software Requirements Engineering",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE104"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 1
+      },
+      {
+        "code": "SE224",
+        "title": "Process Modeling and Workflow Design",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE223"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 2
+      },
+      {
+        "code": "SE226",
+        "title": "Software Design and Architecture",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE104"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 2
+      },
+      {
+        "code": "SE231",
+        "title": "Advanced Programming",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE132"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 1
+      },
+      {
+        "code": "SE233",
+        "title": "Data Structures and Algorithms",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE131"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 1
+      },
+      {
+        "code": "SE252",
+        "title": "Operating Systems",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE101"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 2
+      },
+      {
+        "code": "SE381",
+        "title": "Web Systems and Services",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 3,
+        "semester": 1
+      },
+      {
+        "code": "SE322",
+        "title": "Software Quality Assurance and Testing",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 3,
+        "semester": 2
+      },
+      {
+        "code": "SE327",
+        "title": "Enterprise Systems",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 3,
+        "semester": 1
+      },
+      {
+        "code": "SE324",
+        "title": "Software Usability and Management",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 3,
+        "semester": 2
+      },
+      {
+        "code": "SE331",
+        "title": "Mobile Application Development",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE231"
+        ],
+        "type": "compulsory",
+        "year": 3,
+        "semester": 1
+      },
+      {
+        "code": "SE366",
+        "title": "Methods for Software Engineering Research",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "MT361"
+        ],
+        "type": "compulsory",
+        "year": 3,
+        "semester": 2
+      },
+      {
+        "code": "SE376",
+        "title": "Software Project Management",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 3,
+        "semester": 2
+      },
+      {
+        "code": "SE421",
+        "title": "Systems Thinking and Systems Approach",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE327"
+        ],
+        "type": "compulsory",
+        "year": 4,
+        "semester": 1
+      },
+      {
+        "code": "IT463",
+        "title": "Foundations of Data Analytics",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "MT361"
+        ],
+        "type": "compulsory",
+        "year": 4,
+        "semester": 1
+      },
+      {
+        "code": "SE424",
+        "title": "Continuous Integration and Deployment",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 4,
+        "semester": 2
+      },
+      {
+        "code": "SE425",
+        "title": "Service-oriented Architecture",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE327"
+        ],
+        "type": "compulsory",
+        "year": 4,
+        "semester": 1
+      },
+      {
+        "code": "SE426",
+        "title": "Seminar in Software Engineering",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 4,
+        "semester": 2
+      },
+      {
+        "code": "SE478",
+        "title": "Software Product Management",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SE104"
+        ],
+        "type": "compulsory",
+        "year": 4,
+        "semester": 2
+      },
+      {
+        "code": "SE491",
+        "title": "Software Engineering Capstone Project I",
+        "credits": 4,
+        "ects": 7,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 4,
+        "semester": 1
+      },
+      {
+        "code": "SE492",
+        "title": "Software Engineering Capstone Project II",
+        "credits": 4,
+        "ects": 7,
+        "prereq": [
+          "SE491"
+        ],
+        "type": "compulsory",
+        "year": 4,
+        "semester": 2
+      },
+      {
+        "code": "MT161",
+        "title": "Discrete Mathematics",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 1,
+        "semester": 1
+      },
+      {
+        "code": "MT164",
+        "title": "Linear Algebra",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "MT161"
+        ],
+        "type": "compulsory",
+        "year": 1,
+        "semester": 2
+      },
+      {
+        "code": "MT261",
+        "title": "Calculus",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "MT161"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 1
+      },
+      {
+        "code": "MT266",
+        "title": "Boolean Algebra",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "MT164"
+        ],
+        "type": "compulsory",
+        "year": 2,
+        "semester": 2
+      },
+      {
+        "code": "MT361",
+        "title": "Statistical Methods",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "compulsory",
+        "year": 3,
+        "semester": 1
+      },
+      {
+        "code": "SE321",
+        "title": "Software Process Improvement",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "elective",
+        "year": null,
+        "semester": null
+      },
+      {
+        "code": "IT365",
+        "title": "Introduction to Artificial Intelligence",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "elective",
+        "year": null,
+        "semester": null
+      },
+      {
+        "code": "IT366",
+        "title": "Knowledge Discovery and Data Mining",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "elective",
+        "year": null,
+        "semester": null
+      },
+      {
+        "code": "SE427",
+        "title": "Ethical Computing",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "elective",
+        "year": null,
+        "semester": null
+      },
+      {
+        "code": "IT479",
+        "title": "Management Information Systems",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "elective",
+        "year": null,
+        "semester": null
+      },
+      {
+        "code": "SP111",
+        "title": "College English I",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "support",
+        "year": 1,
+        "semester": 1
+      },
+      {
+        "code": "SP112",
+        "title": "College English II",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [
+          "SP111"
+        ],
+        "type": "support",
+        "year": 1,
+        "semester": 2
+      },
+      {
+        "code": "SP117",
+        "title": "Introduction to Logic and Critical Thinking",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "support",
+        "year": 1,
+        "semester": 1
+      },
+      {
+        "code": "SP115",
+        "title": "Geography of Ethiopia and the Horn",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "support",
+        "year": 1,
+        "semester": 1
+      },
+      {
+        "code": "SP216",
+        "title": "Moral and Civic Education",
+        "credits": 2,
+        "ects": 4,
+        "prereq": [],
+        "type": "support",
+        "year": 1,
+        "semester": 2
+      },
+      {
+        "code": "SP214",
+        "title": "Social Anthropology",
+        "credits": 2,
+        "ects": 4,
+        "prereq": [],
+        "type": "support",
+        "year": 2,
+        "semester": 2
+      },
+      {
+        "code": "SP218",
+        "title": "General Psychology",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "support",
+        "year": 2,
+        "semester": 2
+      },
+      {
+        "code": "SP311",
+        "title": "Business Accounting and Management",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "support",
+        "year": 3,
+        "semester": 1
+      },
+      {
+        "code": "SP312",
+        "title": "Entrepreneurship",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "support",
+        "year": 3,
+        "semester": 2
+      },
+      {
+        "code": "SP411",
+        "title": "Inclusiveness",
+        "credits": 2,
+        "ects": 4,
+        "prereq": [],
+        "type": "support",
+        "year": 4,
+        "semester": 1
+      },
+      {
+        "code": "SP416",
+        "title": "History of Ethiopia and the Horn",
+        "credits": 3,
+        "ects": 5,
+        "prereq": [],
+        "type": "support",
+        "year": 4,
+        "semester": 2
+      }
+    ],
+    "electiveSlots": [
+      {
+        "slot": "Elective I",
+        "year": 3,
+        "semester": 1,
+        "credits": 3
+      },
+      {
+        "slot": "Elective II",
+        "year": 3,
+        "semester": 2,
+        "credits": 3
+      },
+      {
+        "slot": "Elective III",
+        "year": 4,
+        "semester": 1,
+        "credits": 3
+      }
+    ]
+  }
+}
