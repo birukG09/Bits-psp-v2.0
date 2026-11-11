@@ -1,8 +1,6 @@
 # BiTS Connect
 
-<p align="center">
-  <img src="https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20058%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true" width="100%" alt="BiTS Connect Homepage">
-</p>
+
 
 <p align="center">
   <strong>A Student Developer Portal for BiTS College</strong>
@@ -24,7 +22,6 @@
 
 ### 2. Student Dashboard
 
-![Student Dashboard](https://github.com/birukG09/Bits-psp-v2.0/blob/714240665d89722024b823a56c3cfbd3e14787bb/FireShot%20Capture%20054%20-%20Student%20Dashboard%20-%20BiTS%20Connect%20-%20%5Blocalhost%5D.png?raw=true)
 
 ### 3. GPA Tracker
 
