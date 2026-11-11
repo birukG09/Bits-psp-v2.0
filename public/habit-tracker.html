@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Biruk Gebre" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habit Tracker - BiTS Connect</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/custom.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom shadow-sm" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="assets/img/bits-logo.png" alt="BiTS Connect" class="brand-logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="psp-logs.html"><i class="bi bi-stopwatch me-1"></i>PSP Logs</a></li>
+            <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="gpa-tracker.html"><i class="bi bi-bar-chart me-1"></i>GPA Tracker</a></li>
+            <li class="nav-item"><a class="nav-link active" href="habit-tracker.html"><i class="bi bi-bullseye me-1"></i>Habit Tracker</a></li>
+            <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="bi bi-graph-up-arrow me-1"></i>Analytics</a></li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <span class="me-3"><i class="bi bi-person me-1"></i><span id="userName"></span> <small class="text-muted">(Student)</small></span>
+            <button class="btn btn-outline-secondary" onclick="logout()"><i class="bi bi-box-arrow-right me-1"></i>Sign Out</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container py-4">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+        <div>
+          <h1 class="h3 mb-1"><i class="bi bi-bullseye text-primary me-2"></i>Habit Tracker</h1>
+          <p class="text-muted mb-0">One ring per habit, one segment per day. Tap a segment to mark that day done.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-primary" href="psp-logs.html"><i class="bi bi-stopwatch me-2"></i>PSP Logs</a>
+          <button class="btn btn-outline-primary" id="exportBtn"><i class="bi bi-download me-2"></i>Export JSON</button>
+        </div>
+      </div>
+
+      <!-- Streak bar -->
+      <div class="row g-3 mb-4" id="streakBar"></div>
+
+      <div class="row g-4">
+        <!-- Habits panel -->
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom-0"><h6 class="mb-0">Add a habit</h6></div>
+            <div class="card-body">
+              <form id="addHabitForm" class="d-flex gap-2">
+                <input type="color" class="form-control form-control-color" id="habitColor" title="Ring colour" />
+                <input class="form-control" id="habitName" maxlength="40" placeholder="e.g. Programming, 2 hours" required />
+                <button class="btn btn-primary" type="submit"><i class="bi bi-plus-lg"></i></button>
+              </form>
+              <div class="form-text" id="habitLimitNote">Up to 10 habits, tracked for 90 days.</div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0"><h6 class="mb-0">Your habits</h6></div>
+            <div class="list-group list-group-flush" id="habitList"></div>
+          </div>
+        </div>
+
+        <!-- Ring -->
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center gap-2 small text-muted mb-2" id="journeyLine"></div>
+              <div class="habit-ring-wrap" id="ringWrap">
+                <div id="ringEmpty" class="text-center text-muted py-5 d-none">
+                  <i class="bi bi-bullseye display-4 text-primary opacity-50"></i>
+                  <p class="mt-3 mb-0">No habits yet. Add one to start your 90 days.</p>
+                </div>
+                <svg id="ringSvg" viewBox="0 0 760 760" role="img" aria-label="90-day habit ring"></svg>
+                <div class="ring-tooltip d-none" id="ringTip"></div>
+              </div>
+              <div class="d-flex justify-content-center gap-4 small text-muted mt-3" id="ringLegend">
+                <span><span class="habit-chip" style="background:#198754"></span>Completed</span>
+                <span><span class="habit-chip" style="background:#f4c7c3"></span>Missed</span>
+                <span><span class="habit-chip" style="background:#dcebe2"></span>Upcoming</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit habit -->
+    <div class="modal fade" id="editHabitModal" tabindex="-1">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header"><h5 class="modal-title">Edit habit</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body">
+            <form id="editHabitForm" class="d-flex gap-2">
+              <input type="hidden" id="editHabitId" />
+              <input type="color" class="form-control form-control-color" id="editHabitColor" />
+              <input class="form-control" id="editHabitName" maxlength="40" required />
+              <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/habit-tracker.js"></script>
+  </body>
+</html>
