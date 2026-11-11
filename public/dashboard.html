@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Biruk Gebre" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard - BiTS Connect</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/custom.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom shadow-sm" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="assets/img/bits-logo.png" alt="BiTS Connect" class="brand-logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="psp-logs.html"><i class="bi bi-stopwatch me-1"></i>PSP Logs</a></li>
+            <li class="nav-item"><a class="nav-link active" href="dashboard.html"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="gpa-tracker.html"><i class="bi bi-bar-chart me-1"></i>GPA Tracker</a></li>
+            <li class="nav-item"><a class="nav-link" href="habit-tracker.html"><i class="bi bi-bullseye me-1"></i>Habit Tracker</a></li>
+            <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="bi bi-graph-up-arrow me-1"></i>Analytics</a></li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <span class="me-3">
+              <i class="bi bi-person me-1"></i><span id="userName"></span>
+              <small class="text-muted">(Student)</small>
+            </span>
+            <button class="btn btn-outline-secondary" onclick="logout()"><i class="bi bi-box-arrow-right me-1"></i>Sign Out</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container py-4">
+      <div class="mb-4">
+        <h1 class="h3 mb-1">Welcome back, <span id="firstName"></span>!</h1>
+        <p class="text-muted mb-0">Your PSP work, semester and grades</p>
+      </div>
+
+      <!-- Overview -->
+      <div class="row g-4 mb-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="card border-0 shadow-sm stat-tile"><div class="card-body">
+            <div class="value" id="statGPA">--</div><div class="label">Cumulative GPA</div>
+          </div></div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="card border-0 shadow-sm stat-tile"><div class="card-body">
+            <div class="value" id="statSemGPA">--</div><div class="label" id="statSemLabel">Current semester GPA</div>
+          </div></div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="card border-0 shadow-sm stat-tile"><div class="card-body">
+            <div class="value" id="statCredits">--</div><div class="label" id="statCreditsLabel">Credits earned</div>
+          </div></div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="card border-0 shadow-sm stat-tile"><div class="card-body">
+            <div class="value" id="statHabits">--</div><div class="label" id="statHabitsLabel">Habits done today</div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <!-- Semesters -->
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom-0 d-flex justify-content-between align-items-center">
+              <h5 class="mb-0"><i class="bi bi-calendar3 text-primary me-2"></i>Semesters</h5>
+              <a href="gpa-tracker.html" class="btn btn-sm btn-outline-primary">Manage in GPA Tracker</a>
+            </div>
+            <div class="card-body">
+              <div class="row g-3" id="semesterCards"></div>
+              <div id="semesterEmpty" class="empty-hint d-none">
+                No graded courses yet. Add your courses in the GPA Tracker and your First Semester and Second Semester results will show up here.
+              </div>
+            </div>
+          </div>
+
+          <!-- In progress -->
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0"><h6 class="mb-0">Courses in progress</h6></div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead class="table-light"><tr><th>Code</th><th>Title</th><th>Semester</th><th>Credits</th></tr></thead>
+                  <tbody id="inProgressBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom-0"><h6 class="mb-0">Graduation progress</h6></div>
+            <div class="card-body">
+              <div class="progress mb-2" style="height: 14px">
+                <div class="progress-bar bg-gradient" id="gradBar" style="width: 0%"></div>
+              </div>
+              <small class="text-muted" id="gradText">--</small>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0 d-flex justify-content-between align-items-center">
+              <h6 class="mb-0"><i class="bi bi-stopwatch text-primary me-2"></i>PSP Logs</h6>
+              <a href="psp-logs.html" class="btn btn-sm btn-primary">Open</a>
+            </div>
+            <div class="card-body">
+              <div class="small text-muted mb-2">Job Number Log and Daily Time Logs</div>
+              <div class="d-flex justify-content-between"><span>Jobs done</span><strong id="pspJobs">--</strong></div>
+              <div class="d-flex justify-content-between"><span>Time logged today</span><strong id="pspToday">--</strong></div>
+              <div class="d-flex justify-content-between"><span>Total time logged</span><strong id="pspTotal">--</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+  </body>
+</html>
